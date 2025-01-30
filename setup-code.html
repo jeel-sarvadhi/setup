@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.65">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 20.0px 'Helvetica Neue'}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; min-height: 15.0px}
+    p.p4 {margin: 0.0px 0.0px 2.0px 0.0px; font: 16.0px 'Helvetica Neue'}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1"><b>Frappe installation v15 ubuntu 22.04</b></p>
+<p class="p2"><br>
+<span class="Apple-converted-space">    </span>1<span class="Apple-converted-space">  </span>sudo apt-get install git</p>
+<p class="p2"><span class="Apple-converted-space">    </span>2<span class="Apple-converted-space">  </span>sudo apt-get install software-properties-common</p>
+<p class="p2"><span class="Apple-converted-space">    </span>3<span class="Apple-converted-space">  </span>sudo apt install mariadb-server</p>
+<p class="p2"><span class="Apple-converted-space">    </span>4<span class="Apple-converted-space">  </span>sudo mysql_secure_installation</p>
+<p class="p2"><span class="Apple-converted-space">    </span>5<span class="Apple-converted-space">  </span>sudo apt-get install libmysqlclient-dev</p>
+<p class="p2"><span class="Apple-converted-space">    </span>6<span class="Apple-converted-space">  </span>sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf</p>
+<p class="p3"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>copy this</p>
+<p class="p3"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>7<span class="Apple-converted-space">  </span>)</p>
+<p class="p3"><br></p>
+<p class="p2">[server]</p>
+<p class="p2">user = mysql</p>
+<p class="p2">pid-file = /run/mysqld/mysqld.pid</p>
+<p class="p2">socket = /run/mysqld/mysqld.sock</p>
+<p class="p2">basedir = /usr</p>
+<p class="p2">datadir = /var/lib/mysql</p>
+<p class="p2">tmpdir = /tmp</p>
+<p class="p2">lc-messages-dir = /usr/share/mysql</p>
+<p class="p2">bind-address = 127.0.0.1</p>
+<p class="p2">query_cache_size = 16M</p>
+<p class="p2">log_error = /var/log/mysql/error.log</p>
+<p class="p3"><br></p>
+<p class="p2">[mysqld]</p>
+<p class="p2">innodb-file-format=barracuda</p>
+<p class="p2">innodb-file-per-table=1</p>
+<p class="p2">innodb-large-prefix=1</p>
+<p class="p2">character-set-client-handshake = FALSE</p>
+<p class="p2">character-set-server = utf8mb4</p>
+<p class="p2">collation-server = utf8mb4_unicode_ci <span class="Apple-converted-space">     </span></p>
+<p class="p3"><br></p>
+<p class="p2">[mysql]</p>
+<p class="p2">default-character-set = utf8mb4</p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>8<span class="Apple-converted-space">  </span>sudo service mysql restart</p>
+<p class="p2"><span class="Apple-converted-space">    </span>9<span class="Apple-converted-space">  </span>sudo apt-get install redis-server</p>
+<p class="p2"><span class="Apple-converted-space">   </span>10<span class="Apple-converted-space">  </span>sudo apt install curl</p>
+<p class="p2"><span class="Apple-converted-space">   </span>11<span class="Apple-converted-space">  </span>curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash</p>
+<p class="p2"><span class="Apple-converted-space">   </span>12<span class="Apple-converted-space">  </span>source ~/.profile<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space">   </span>13<span class="Apple-converted-space">  </span>nvm install 18.15.0</p>
+<p class="p2"><span class="Apple-converted-space">   </span>14<span class="Apple-converted-space">  </span>sudo apt-get install npm</p>
+<p class="p2"><span class="Apple-converted-space">   </span>15<span class="Apple-converted-space">  </span>sudo npm install -g yarn</p>
+<p class="p2"><span class="Apple-converted-space">   </span>16<span class="Apple-converted-space">  </span>sudo apt-get install xvfb libfontconfig wkhtmltopdf</p>
+<p class="p2"><span class="Apple-converted-space">   </span>17<span class="Apple-converted-space">  </span>pip install frappe-bench</p>
+<p class="p2"><span class="Apple-converted-space">   </span>18<span class="Apple-converted-space">  </span>sudo apt install python3.10-venv</p>
+<p class="p2"><span class="Apple-converted-space">   </span>19<span class="Apple-converted-space">  </span>bench init frappe-bench --frappe-branch version-15</p>
+<p class="p2"><span class="Apple-converted-space">   </span>20<span class="Apple-converted-space">  </span>bench get-app erpnext --branch version-15</p>
+<p class="p2"><span class="Apple-converted-space">   </span>21<span class="Apple-converted-space">  </span>bench new-site demo.com</p>
+<p class="p2"><span class="Apple-converted-space">   </span>22<span class="Apple-converted-space">  </span>bench --site demo.com install-app erpnext</p>
+<p class="p2"><span class="Apple-converted-space">   </span>23 <span class="Apple-converted-space"> </span></p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p1"><b>Wifi not found in ubuntu :-</b></p>
+<p class="p3"><br></p>
+<p class="p2"><span class="Apple-tab-span">	</span>sudo apt update &amp;&amp; sudo apt upgrade</p>
+<p class="p3"><span class="Apple-converted-space"> </span></p>
+<p class="p4"><b>Broadcom Drivers :-</b></p>
+<p class="p3"><span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-tab-span">	</span>sudo apt install bcmwl-kernel-source</p>
+<p class="p2"><span class="Apple-tab-span">	</span>sudo modprobe wl</p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p1"><b>Install teams :-</b></p>
+<p class="p3"><br></p>
+<p class="p2"><span class="Apple-tab-span">	</span>sudo mkdir -p /etc/apt/keyrings</p>
+<p class="p3"><br></p>
+<p class="p2"><span class="Apple-tab-span">	</span>sudo wget -qO /etc/apt/keyrings/teams-for-linux.asc https://repo.teamsforlinux.de/teams-for-linux.asc</p>
+<p class="p3"><br></p>
+<p class="p2"><span class="Apple-tab-span">	</span>echo "deb [signed-by=/etc/apt/keyrings/teams-for-linux.asc arch=$(dpkg --print-architecture)] https://repo.teamsforlinux.de/debian/ stable main" | sudo tee /etc/apt/sources.list.d/teams-for-linux-packages.list</p>
+<p class="p3"><br></p>
+<p class="p2"><span class="Apple-tab-span">	</span>sudo apt update</p>
+<p class="p3"><br></p>
+<p class="p2"><span class="Apple-tab-span">	</span>sudo apt install teams-for-linux</p>
+<p class="p2"><b><br>
+</b></p>
+<p class="p1"><b>Install Chrome on Ubuntu :-<br>
+</b></p>
+<p class="p2"><span class="Apple-tab-span">	</span>wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</p>
+<p class="p3"><span class="Apple-tab-span">	</span></p>
+<p class="p2"><span class="Apple-tab-span">	</span>sudo dpkg -i google-chrome-stable_current_amd64.deb</p>
+</body>
+</html>
